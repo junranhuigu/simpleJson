@@ -54,6 +54,20 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<tagBase>${project.artifactId}-${project.version}</tagBase>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+
+	<scm>
+		<connection>scm:git:http://github.com/junranhuigu/simpleJson.git</connection>
+		<developerConnection>scm:git:http://github.com/junranhuigu/simpleJson.git</developerConnection>
+		<url>http://github.com/junranhuigu/simpleJson/tree/master</url>
+	</scm>
 </project>
