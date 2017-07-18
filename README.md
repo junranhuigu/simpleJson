@@ -1,7 +1,7 @@
 # simpleJson
 fastjson拓展项目
 
-目前拓展功能：
+0.0.1 功能：
 1.查看json数据结构
 
 方法： JsonUtil.jsonStructure(String json)
@@ -28,4 +28,10 @@ executeLanguage 即是简易命令， 该方法需配合JsonUtil.jsonStructure(S
 
 方法： JsonUtil.select(List<String> executeLanguage, String json)
 是JsonUtil.select(String executeLanguage, String json)方法的复合版本，即适用于对一个json提取多个内容的情况。
+
+0.0.2 版本拓展了select方法
+该版本可以通过输入 'root.cardList[0].id > 21020'的语句 获取cardList中所有泛型中的id > 21020的数据
+目前支持符号类型 与 groovy语句字符串或者数值的运算符号基本相同
+例：字符串 可通过 ==~ 方式 获取匹配正则表达式的语句； 数值可通过 > < !=等方式获取过滤后的条件数据
+
 
