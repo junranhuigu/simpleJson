@@ -11,6 +11,11 @@ private static List<Object> executeJSON(String executeLanguage, root){
 	Binding binding = new Binding();
 	binding.setVariable("root", root);
 	GroovyShell shell = new GroovyShell(binding);
+	if(!StringUtil.matchSelectNoContidion(executeLanguage)){
+		String exe = StringUtil.findSelect(executeLanguage);
+		String replaceLanguage = executeLanguage.replace(exe, '')
+		executeLanguage = exe + '.findAll{ it ' + replaceLanguage + ' }'
+	}
 	Object obj = shell.evaluate("return " + executeLanguage);
 	if(List.class.isAssignableFrom(obj.getClass())){
 		List<Object> list = obj;
@@ -45,4 +50,5 @@ static List<Object> execute4One(String executeLanguage, String json){
 	List<String> list = [executeLanguage];
 	return execute4Some(list, json)[executeLanguage];
 }
+
 

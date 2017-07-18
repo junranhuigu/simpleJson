@@ -39,7 +39,7 @@ public class JsonUtilTest {
 	@Test
 	public void testSelectListOfStringString() {
 		List<String> commands = new ArrayList<>();
-		commands.add("root.soulList.id");
+		commands.add("root.soulList.id > 21020");
 		commands.add("root.soulList[0].id");
 		Map<String, List<Object>> values = JsonUtil.select(commands, json);
 		System.out.println(values);
