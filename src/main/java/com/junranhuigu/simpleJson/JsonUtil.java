@@ -103,8 +103,8 @@ public class JsonUtil {
 	 * 使用语句获取json中的数据
 	 * @param executeLanguage 执行语句
 	 * */
-	public static List<Object> select(String executeLanguage, String json){
-		return GroovyService.execute4One(executeLanguage, json);
+	public static <T> List<T> select(String executeLanguage, String json, Class<T> cls){
+		return GroovyService.execute4One(executeLanguage, json, cls);
 	}
 	
 	/**
@@ -115,4 +115,5 @@ public class JsonUtil {
 	public static Map<String, List<Object>> select(List<String> executeLanguage, String json){
 		return GroovyService.execute4Some(executeLanguage, json);
 	}
+	
 }

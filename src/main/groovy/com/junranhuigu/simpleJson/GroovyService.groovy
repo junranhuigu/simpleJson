@@ -46,7 +46,7 @@ static Map<String, List<Object>> execute4Some(List<String> executeLanguage, Stri
  * 使用语句获取json中的数据
  * @param executeLanguage 执行语句
  * */
-static List<Object> execute4One(String executeLanguage, String json){
+static <T> List<T> execute4One(String executeLanguage, String json, Class<T> cls){
 	List<String> list = [executeLanguage];
 	return execute4Some(list, json)[executeLanguage];
 }

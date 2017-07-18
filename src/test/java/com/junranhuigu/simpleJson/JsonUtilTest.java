@@ -1,6 +1,6 @@
 package com.junranhuigu.simpleJson;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public class JsonUtilTest {
 
 	@Test
 	public void testSelectStringString() {
-		List<Object> values = JsonUtil.select("root.soulList.id", json);
+		List<Integer> values = JsonUtil.select("root.soulList.id", json, Integer.class);
 		System.out.println(values);
 		assertNotNull(values);
 	}
