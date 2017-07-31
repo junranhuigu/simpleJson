@@ -1,10 +1,14 @@
 package com.junranhuigu.simpleJson;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -40,9 +44,29 @@ public class JsonUtilTest {
 	public void testSelectListOfStringString() {
 		List<String> commands = new ArrayList<>();
 		commands.add("root.soulList.id > 21020");
+		commands.add("root.soulList[0]");
 		commands.add("root.soulList[0].id");
+		commands.add("root.soulList where .id < 21010 && .skillPosition > 0");
 		Map<String, List<Object>> values = JsonUtil.select(commands, json);
-		System.out.println(values);
+		Iterator<Entry<String, List<Object>>> ite = values.entrySet().iterator();
+		while(ite.hasNext()){
+			Entry<String, List<Object>> entry = ite.next();
+			System.out.println(entry.getKey() + " " + entry.getValue());
+			assertNotNull(entry.getValue());
+		}
+	}
+	
+	@Test
+	public void testIsAttr() {
+		try {
+			assertTrue(JsonUtil.isAttr("root.soulList.id > 21020", json));
+			assertFalse(JsonUtil.isAttr("root.soulList", json));
+			assertFalse(JsonUtil.isAttr("root.soulList[0]", json));
+			assertTrue(JsonUtil.isAttr("root.soulList[0].id", json));
+			assertTrue(JsonUtil.isAttr("root.charmList", json));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

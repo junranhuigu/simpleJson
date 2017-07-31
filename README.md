@@ -34,4 +34,15 @@ executeLanguage 即是简易命令， 该方法需配合JsonUtil.jsonStructure(S
 目前支持符号类型 与 groovy语句字符串或者数值的运算符号基本相同
 例：字符串 可通过 ==~ 方式 获取匹配正则表达式的语句； 数值可通过 > < !=等方式获取过滤后的条件数据
 
+0.0.3 select方法增加where关键字 
+提取数据为封装类的对象
+以之前的方法为例，我们想获取".root{Object}.cardList{Array}{Object}"中id > 21020的数据，则命令为"root.cardList where root.cardList.id > 21020"， 即可获得相关数据
+"root.cardList where root.cardList.id > 21020" 这条语句可简写为 "root.cardList where .id > 21020"
 
+提取数据为基础值的对象
+语句为'root.cardList[0].id > 21020' 也可写作'root.cardList[0].id where root.cardList[0].id > 21020' 简写'root.cardList[0].id where . > 21020'
+
+where后跟随的条件可不止一条 条件的并列关系如下：
+and -> &&
+or -> ||
+即可获取cardList中id > 21020且count > 1的对象语句为: "root.cardList where .id > 21020 && .count > 1"
